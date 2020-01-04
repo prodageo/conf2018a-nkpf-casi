@@ -1,2 +1,1 @@
-# matriceconf10
-Matrice du résumé d'une conférence
+![Lien vers le résumé](docs/billet.md)
