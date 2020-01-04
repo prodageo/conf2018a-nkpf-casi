@@ -1,1 +1,1 @@
-![Lien vers le résumé](docs/billet.md)
+[Lien vers le résumé](docs/billet.md)
