@@ -4,11 +4,11 @@
 
  - Manifestation : CodeursEnSeine 2019
  - Lieu : Kindarena - Rouen
- - Conférence : ![20 choses à connaitre quand on fait du Kubernetes](https://www.codeursenseine.com/2019/programme)
+ - Conférence : [20 choses à connaitre quand on fait du Kubernetes](https://www.codeursenseine.com/2019/programme)
  - Horaire de la conférence : 16h40
  - Durée de la conférence : 45 minutes
  - Conférencier(s) :
-   - ![Alain Regnier](https://fr.linkedin.com/in/alainregnier)
+   - [Alain Regnier](https://fr.linkedin.com/in/alainregnier)
  - Audience : 
  - Auteur du billet : Nicolas KEMPF
  - Mots-clés : Kubernetes, Conteneurisation, Docker, Google Kubernetes Engine (GKE)
