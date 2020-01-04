@@ -12,7 +12,7 @@
  - Audience : 
  - Auteur du billet : Nicolas KEMPF
  - Mots-clés : Kubernetes, Conteneurisation, Docker, Google Kubernetes Engine (GKE)
- - URL de l'illustration : ![Mettre votre image, Photo by Oscar Keys on Unsplash](https://unsplash.com/photos/fN603qcEA7g)
+ - URL de l'illustration : ![Photo by chuttersnap on Unsplash](chuttersnap-fN603qcEA7g-unsplash.jpg)
 
 
 ## Support
