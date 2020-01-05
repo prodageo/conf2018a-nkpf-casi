@@ -77,6 +77,7 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 	Deux notions importantes mises en avant ici:
 	- Requests ce qu'un container est garanti d'avoir comme ressources
 	- Limits: le max de ressources qu'un container peut utiliser avant d'être restreint
+	
 	**Attention: Des Pods sans requests sont les premiers candidats pour être supprimés même si ils sont Healthy.**
 
 14. Utilisez les RessourceQuota et LimitRange
@@ -86,19 +87,19 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 15. Etudiez les daemonSet et StatefulSet 
 
 	Par défaut our le controller Kubernetes on utilise le Deployment, cependant d'autres peuvent être utiles.
-		- DaemonSet:
-		  - Chaque node a une copie du Pod 
-		  - Et peut être restreint à certains Nodes
-		- StatefulSet:
-		  - Groupe de Pod avec des noms uniques ("pet" vs "cattle")
-		  - Ordre garanti
-		  - Toujours le même stockage attaché
+	- DaemonSet:
+		- Chaque node a une copie du Pod 
+		- Et peut être restreint à certains Nodes
+	- StatefulSet:
+		- Groupe de Pod avec des noms uniques ("pet" vs "cattle")
+		- Ordre garanti
+		- Toujours le même stockage attaché
 
 16. Utilisez les Probes pour faire des health checks 
    
    Avec par exemple:
-	   - Readliness Probes qui indique si une application est prête à recevoir des requêtes.
-	   - Liveness Probes qui permet de savoir si une application est en vie
+   - Readliness Probes qui indique si une application est prête à recevoir des requêtes.
+   - Liveness Probes qui permet de savoir si une application est en vie
 
 17. Utilisez les service de GCP depuis GKP
 
