@@ -86,7 +86,6 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 15. Etudiez les daemonSet et StatefulSet 
 
 	Par défaut our le controller Kubernetes on utilise le Deployment, cependant d'autres peuvent être utiles.
-	
 		- DaemonSet:
 		  - Chaque node a une copie du Pod 
 		  - Et peut être restreint à certains Nodes
@@ -98,7 +97,6 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 16. Utilisez les Probes pour faire des health checks 
    
    Avec par exemple:
-   
 	   - Readliness Probes qui indique si une application est prête à recevoir des requêtes.
 	   - Liveness Probes qui permet de savoir si une application est en vie
 
