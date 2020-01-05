@@ -96,10 +96,10 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 		- Toujours le même stockage attaché
 
 17. Utilisez les Probes pour faire des health checks 
-   
-   Avec par exemple:
-   - Readliness Probes qui indique si une application est prête à recevoir des requêtes.
-   - Liveness Probes qui permet de savoir si une application est en vie
+
+	Avec par exemple:
+   	- Readliness Probes qui indique si une application est prête à recevoir des requêtes.
+   	- Liveness Probes qui permet de savoir si une application est en vie
 
 18. Utilisez les service de GCP depuis GKP
 
