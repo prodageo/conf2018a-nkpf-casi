@@ -28,7 +28,7 @@ La conférence commece donc par un bref rappel de ce qu'est un container, Docker
 
 Après cette courte introduction s'en suit un déroulé de bonnes pratiques à mettre quand on fait du Kubernetes. 
 
-### Top 20 des astuces sur Kubernetes! ###
+### Top 20 des astuces sur Kubernetes!
 
 1. Définir des alias pour kubectl
 
@@ -52,27 +52,27 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 
 7. Utilisez `kubectl top` pour visualiser les ressources utilisées par les pods et nodes 
 
-6. Utilisez un *Ingress* pour exposer vos services 
+8. Utilisez un *Ingress* pour exposer vos services 
    
-   Un LoadBalancer étant limité, pas toujours disponible et cher. Il vaut mieux utiliser un Ingress. Il s'agit d'une collection de règles permmetant à une connexion externe d'atteindre des services à l'intérieur du docker. On peut donc y faire une terminaison SSL, du virtual Hosting ou encoure de séparer des chemins vers différents conteneurs
+ 	Un LoadBalancer étant limité, pas toujours disponible et cher. Il vaut mieux utiliser un Ingress. Il s'agit d'une collection de règles permmetant à une connexion externe d'atteindre des services à l'intérieur du docker. On peut donc y faire une terminaison SSL, du virtual Hosting ou encoure de séparer des chemins vers différents conteneurs
 
-8. Ne déployez jamais vos microservices à la main
+9. Ne déployez jamais vos microservices à la main
 
 	Ne jamais déployer via un `kubectl run` car on ne peut pas suivre les dépendances. Toujours utiliser des YAML et des outils de CI/Cd. Utilisez –record avec kubectl pour conserver la commande exécuté dans l'annotation kubernetes.io
 
-9. Stockez les fichiers YAML dans un repository 
+10. Stockez les fichiers YAML dans un repository 
 
-10. Profitez de l'intégration StackDriver sur GKE qui permet de gérer les logs
+11. Profitez de l'intégration StackDriver sur GKE qui permet de gérer les logs
 
-11. N'utilisez pas le default Namespace 
+12. N'utilisez pas le default Namespace 
 
 	Il est trop facile de faire des erreurs entre plusieurs équipes. Les namespaces permettent de séparer les ressources en clusters virtuels sur un même cluster Kubernetes. Ils sont spécifiables dans le YAML et de plus accessibles via un DNS.
 
-12. Utilisez port forward pour vous connecter à un Pod sur le cluster
+13. Utilisez port forward pour vous connecter à un Pod sur le cluster
 
 	Permet d'établir une connexion depuis le cloud shell ou votre machine locale vers un pod ou un service à l'intérieur du cluster.
 
-13. Utilisez les Requests et les Limits 
+14. Utilisez les Requests et les Limits 
 
 	Deux notions importantes mises en avant ici:
 	- Requests ce qu'un container est garanti d'avoir comme ressources
@@ -80,11 +80,11 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 	
 	**Attention: Des Pods sans requests sont les premiers candidats pour être supprimés même si ils sont Healthy.**
 
-14. Utilisez les RessourceQuota et LimitRange
+15. Utilisez les RessourceQuota et LimitRange
 	
 	Utile pour empêcher une équipe d'utiliser trop de ressources sur le cluster.
 
-15. Etudiez les daemonSet et StatefulSet 
+16. Etudiez les daemonSet et StatefulSet 
 
 	Par défaut our le controller Kubernetes on utilise le Deployment, cependant d'autres peuvent être utiles.
 	- DaemonSet:
@@ -95,19 +95,17 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 		- Ordre garanti
 		- Toujours le même stockage attaché
 
-16. Utilisez les Probes pour faire des health checks 
+17. Utilisez les Probes pour faire des health checks 
    
    Avec par exemple:
    - Readliness Probes qui indique si une application est prête à recevoir des requêtes.
    - Liveness Probes qui permet de savoir si une application est en vie
 
-17. Utilisez les service de GCP depuis GKP
+18. Utilisez les service de GCP depuis GKP
 
-18. Apprenez à investiguer un Pod Coincé avec `kubectl logs` ou `kubectl describe`
+19. Apprenez à investiguer un Pod Coincé avec `kubectl logs` ou `kubectl describe`
 
-19. Apprenez à vous connecter sur un livepod `kubectl exec -it podname -c`
-
-Le lecteur attentif aura remarqué qu'il n'y a pas 20 points mais seulement 19. La conférence s'étant un peu allongée certains points ont été passés très rapidements voire passés.
+20. Apprenez à vous connecter sur un livepod `kubectl exec -it podname -c`
 
 ## Architecture et facteur qualité
 
