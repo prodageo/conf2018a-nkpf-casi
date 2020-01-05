@@ -54,7 +54,7 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
 
 8. Utilisez un *Ingress* pour exposer vos services 
    
- 	Un LoadBalancer étant limité, pas toujours disponible et cher. Il vaut mieux utiliser un Ingress. Il s'agit d'une collection de règles permmetant à une connexion externe d'atteindre des services à l'intérieur du docker. On peut donc y faire une terminaison SSL, du virtual Hosting ou encoure de séparer des chemins vers différents conteneurs
+ 	Un LoadBalancer étant limité, pas toujours disponible et cher. Il vaut mieux utiliser un Ingress. Il s'agit d'une collection de règles permmetant à une connexion externe d'atteindre des services à l'intérieur du docker. On peut donc y faire une terminaison SSL, du virtual Hosting ou encoure de séparer des chemins vers différents conteneurs.
 
 9. Ne déployez jamais vos microservices à la main
 
