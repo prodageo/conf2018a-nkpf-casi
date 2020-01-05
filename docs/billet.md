@@ -56,104 +56,57 @@ Après cette courte introduction s'en suit un déroulé de bonnes pratiques à m
    
    Un LoadBalancer étant limité, pas toujours disponible et cher. Il vaut mieux utiliser un Ingress. Il s'agit d'une collection de règles permmetant à une connexion externe d'atteindre des services à l'intérieur du docker. On peut donc y faire une terminaison SSL, du virtual Hosting ou encoure de séparer des chemins vers différents conteneurs
 
-7. Ne déployez jamais vos microservices à la main
+8. Ne déployez jamais vos microservices à la main
 
-  - PAS DE KUBECTL RUN car on ne suit pas les dépendances
+	Ne jamais déployer via un `kubectl run` car on ne peut pas suivre les dépendances. Toujours utiliser des YAML et des outils de CI/Cd. Utilisez –record avec kubectl pour conserver la commande exécuté dans l'annotation kubernetes.io
 
-  - Utilisez toujours des YAML
+9. Stockez les fichiers YAML dans un repository 
 
-  - Utilisez des outils de CI/CD comme Jenkins ou concourse
+10. Profitez de l'intégration StackDriver sur GKE qui permet de gérer les logs
 
-  - utilisez –record avec kubectl pour conserver la commande exécutée
-    dans la 'annotation kubernetes.io
+11. N'utilisez pas le default Namespace 
 
-8. Stockez les fichiers YAML dans un repository 
+	Il est trop facile de faire des erreurs entre plusieurs équipes. Les namespaces permettent de séparer les ressources en clusters virtuels sur un même cluster Kubernetes. Ils sont spécifiables dans le YAML et de plus accessibles via un DNS.
 
-  - Difficile de savoir quelle est la dernière version du YAML
-  - Infrastructure as code
-  - Considérez l'approche commit-then-Apply et utilisez des tags après
-    vérification
+12. Utilisez port forward pour vous connecter à un Pod sur le cluster
 
-9. Profitez de l'intégration StackDriver sur GKE 
+	Permet d'établir une connexion depuis le cloud shell ou votre machine locale vers un pod ou un service à l'intérieur du cluster.
 
-  - permet de gérer les logs
-  - Pas besoin de grafana/prometheys
-  - Filtrage puissant
+13. Utilisez les Requests et les Limits 
 
-10. N'utilisez pas le default Namespace 
+	Deux notions importantes mises en avant ici:
+	- Requests ce qu'un container est garanti d'avoir comme ressources
+	- Limits: le max de ressources qu'un container peut utiliser avant d'être restreint
+	**Attention: Des Pods sans requests sont les premiers candidats pour être supprimés même si ils sont Healthy.**
 
-  - Les NS permettent de séparer les ressources en clusters virtuels sur
-    un même clsuter Kubernetes
+14. Utilisez les RessourceQuota et LimitRange
+	
+	Utile pour empêcher une équipe d'utiliser trop de ressources sur le cluster.
 
-  - Trop facile de faire des bêtises quand on a plusieurs équipes ou
-    projets
+15. Etudiez les daemonSet et StatefulSet 
 
-  - Utilisez les NS pour séparer les env : Dev, Staging
+	Par défaut our le controller Kubernetes on utilise le Deployment, cependant d'autres peuvent être utiles.
+		- DaemonSet:
+		  - Chaque node a une copie du Pod 
+		  - Et peut être restreint à certains Nodes
+		- StatefulSet:
+		  - Groupe de Pod avec des noms uniques ("pet" vs "cattle")
+		  - Ordre garanti
+		  - Toujours le même stockage attaché
 
-  - Spécifiez le NS directement dans le yaml ou avec le flag –namespace
+16. Utilisez les Probes pour faire des health checks 
+   
+   Avec par exemple:
+	   - Readliness Probes qui indique si une application est prête à recevoir des requêtes.
+	   - Liveness Probes qui permet de savoir si une application est en vie
 
-  - les services sont accessibles par DNS
+17. Utilisez les service de GCP depuis GKP
 
-11. Utilisez port forward pour vous connecter à un POD sur le cluster
+18. Apprenez à investiguer un Pod Coincé avec `kubectl logs` ou `kubectl describe`
 
-  - Etablissez une connexion depuis le cloud shell ou votre machine
-    locale vers un pod à l'intérieur du cluster
-  - Peut être aussi fait vers un service
+19. Apprenez à vous connecter sur un livepod `kubectl exec -it podname -c`
 
-12. Utilisez les Requests et les Limits 
-
-  - Requets ce qu'un container est garanti d'avoir
-  - Limits: le max de ressources qu'un container peut utiliser avant
-    d'être restreint
-  - Si au dessus de la CPU limit: le CPU sera artificiellement restreint
-    mais pas de suppressions
-  - Si au dessus de la Memory Limit: le container pourra etre supprimé
-  - Les Requests sont notamment utilisées par le scheduler pour savoir
-    ou scheduler le pod
-  - Les Pods sans requests sont les premiers candidats pour être
-    supprimés même si ils sont Healthy
-
-13. Utilisez les RessourceQuota et LimitRange
-
-  - Empêcher une équiper d'utilsier trop de ressources sur le cluster
-
-14. Etudiez les daemonSet et StatefulSet même si pas besoin pour le moment
-
-  - Les gens ont tendance à tout faire avec un deployment au départ mais
-    pas forcément efficace et difficile
-
-  - DaemonSet:
-    
-      - Chaque node a une copie du Pod (stockage..)
-      - EPeut être restreint à certains Nodes
-
-  - StatefulSet:
-    
-      - groupe de Pod avec des noms uniques ("pet" vs "cattle")
-      - ordre garanti
-      - Toujours le même stockage attaché (BD)
-
-15. Utilisez les Probes pour les health checks 
-
-  - Readliness Probes: permet à Kubernetes de savoir quand une
-    application est prête à recevoir des requêtes
-  - Liveness Probes: Permet à Kubernetes de savoir qu'une app est en vie
-
-16. Utilisez les service de GCP depuis GKP
-
-17. Apprenez à investiguer un Pod Coincé 
-
-  - Vérifiez les logs
-      - kubectl logs
-      - kubectl describe
-
-18. Apprenez à vous connecter sur un livepod 
-
-  - kubectl exec -it podname -c
-
-
-
-
+Le lecteur attentif aura remarqué qu'il n'y a pas 20 points mais seulement 19. La conférence s'étant un peu allongée certains points ont été passés très rapidements voire passés.
 
 ## Architecture et facteur qualité
 
